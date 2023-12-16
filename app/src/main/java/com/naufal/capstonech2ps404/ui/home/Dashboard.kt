@@ -41,7 +41,7 @@ fun Dashboard(
     Scaffold(
         topBar = { SearchBarLayout(query = query, onQueryChange = viewModel::search) },
         floatingActionButton = {
-            fabDashboard()
+            FabDashboard()
         }) { innerPadding ->
         Column(
             modifier = Modifier
