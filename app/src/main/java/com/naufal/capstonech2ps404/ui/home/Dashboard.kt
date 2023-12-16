@@ -31,8 +31,6 @@ import com.naufal.capstonech2ps404.viewmodel.ViewModelFactory
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Dashboard(
-    navigation: NavController,
-    modifier: Modifier = Modifier,
     viewModel: VacationsViewModel = viewModel(factory = ViewModelFactory(VacationRepository()))
 ) {
     val groupedVacations by viewModel.groupedVacation.collectAsState()
@@ -40,9 +38,7 @@ fun Dashboard(
     val listState = rememberLazyListState()
     Scaffold(
         topBar = { SearchBarLayout(query = query, onQueryChange = viewModel::search) },
-        floatingActionButton = {
-            FabDashboard()
-        }) { innerPadding ->
+        ) { innerPadding ->
         Column(
             modifier = Modifier
                 .padding(innerPadding)
@@ -83,5 +79,5 @@ fun Dashboard(
 @Composable
 fun DashboardPreview() {
     val navDummy = rememberNavController()
-    Dashboard(navigation = navDummy)
+    Dashboard()
 }
