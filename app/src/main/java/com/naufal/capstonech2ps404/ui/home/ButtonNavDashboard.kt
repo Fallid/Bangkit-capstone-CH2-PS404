@@ -27,6 +27,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.naufal.capstonech2ps404.model.ButtonNavigationItem
 import com.naufal.capstonech2ps404.style.IconsApp
 import com.naufal.capstonech2ps404.style.backgroundColor
@@ -36,7 +38,7 @@ import java.util.Collections
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FabDashboard() {
+fun FabDashboard(navController : NavController) {
     var selectedItemIndex by rememberSaveable {
         mutableIntStateOf(0)
     }
@@ -63,7 +65,9 @@ fun FabDashboard() {
     NavigationBar(
         containerColor = backgroundColor,
         modifier = Modifier
-            .fillMaxWidth().heightIn(min = 48.dp).height(71.dp)
+            .fillMaxWidth()
+            .heightIn(min = 48.dp)
+            .height(71.dp)
             .padding(start = 44.dp, end = 16.dp)
             .border(width = 1.dp, color = primaryColor, shape = RoundedCornerShape(40.dp))
             .clip(shape = RoundedCornerShape(40.dp))
@@ -78,7 +82,7 @@ fun FabDashboard() {
                 selected = selectedItemIndex == index,
                 onClick = {
                     selectedItemIndex = index
-//                navController.navigate(item.title)
+                navController.navigate(buttonNavigationItem.title)
                 },
                 icon = {
                     BadgedBox(badge = {}, modifier = Modifier.background(backgroundColor)) {
@@ -99,7 +103,8 @@ fun FabDashboard() {
 @Preview
 @Composable
 fun PreviewButtonNav() {
-    Scaffold(floatingActionButton = { FabDashboard() }) { innerPadding ->
+    val dummyRoute = rememberNavController()
+    Scaffold(floatingActionButton = { FabDashboard(dummyRoute) }) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
 
         }

@@ -12,6 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.naufal.capstonech2ps404.style.AppTheme
 import com.naufal.capstonech2ps404.ui.home.Dashboard
+import com.naufal.capstonech2ps404.ui.notification.Notification
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
                 ) {
                     NavHost(navController = navController, startDestination = "dashboard" ){
                         composable("dashboard"){ Dashboard(navigation = navController) }
+                        composable("notification"){ Notification(navController = navController)}
                     }
                 }
             }
