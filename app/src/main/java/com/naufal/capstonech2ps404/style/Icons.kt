@@ -7,4 +7,6 @@ object IconsApp{
     val icNotification = R.drawable.ic_notification
     val icFavorite = R.drawable.ic_favorite
     val icBackBtn = R.drawable.ic_btn_back
+    val icLogin = R.drawable.ic_login
+    val icWave = R.drawable.ic_wave
 }
