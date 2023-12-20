@@ -28,6 +28,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.naufal.capstonech2ps404.data.VacationRepository
 import com.naufal.capstonech2ps404.style.backgroundColor
 import com.naufal.capstonech2ps404.style.primaryColor
@@ -38,6 +40,7 @@ import com.naufal.capstonech2ps404.viewmodel.ViewModelFactory
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Dashboard(
+    navigation: NavController,
     viewModel: VacationsViewModel = viewModel(factory = ViewModelFactory(VacationRepository()))
 ) {
     val groupedVacations by viewModel.groupedVacation.collectAsState()
@@ -71,7 +74,7 @@ fun Dashboard(
                             photoUrl = vacation.photoUrl,
                             kota = vacation.kota,
                             onClick = {
-//                                navigation.navigate("detail_page/${vacation.id}")
+                                navigation.navigate("Detail/${vacation.id}")
                             },
                             modifier = Modifier
                                 .width(200.dp)
@@ -92,5 +95,6 @@ fun Dashboard(
 @Preview
 @Composable
 fun DashboardPreview() {
-    Dashboard()
+    val dummyNavigation = rememberNavController()
+    Dashboard(dummyNavigation)
 }
