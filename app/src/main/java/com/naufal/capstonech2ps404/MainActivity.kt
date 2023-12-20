@@ -12,7 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.naufal.capstonech2ps404.model.Dummy
 import com.naufal.capstonech2ps404.style.AppTheme
+import com.naufal.capstonech2ps404.ui.detail.Detail
 import com.naufal.capstonech2ps404.ui.favorite.Favorite
 import com.naufal.capstonech2ps404.ui.home.Dashboard
 import com.naufal.capstonech2ps404.ui.home.FabDashboard
@@ -28,13 +30,23 @@ class MainActivity : AppCompatActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Scaffold(floatingActionButton = { FabDashboard(navController = navController)}) {
-                        innerPadding->
-                        NavHost(navController = navController, startDestination = "Home", modifier = Modifier.padding(innerPadding) ){
+                    Scaffold(floatingActionButton = { FabDashboard(navController = navController) }) { innerPadding ->
+                        NavHost(
+                            navController = navController,
+                            startDestination = "Home",
+                            modifier = Modifier.padding(innerPadding)
+                        ) {
 
-                            composable("Home"){ Dashboard() }
-                            composable("Notification"){ Notification()}
-                            composable("Favorite"){ Favorite() }
+                            composable("Home") { Dashboard(navController) }
+                            composable("Notification") { Notification() }
+                            composable("Favorite") { Favorite() }
+                            composable("Detail/{id}") { id ->
+                                val vacationId = id.arguments?.getString("id")
+                                val dataItem = Dummy.vacations.find { it.id == vacationId }
+                                if (dataItem != null) {
+                                    Detail(vacation = dataItem)
+                                }
+                            }
                         }
                     }
                 }
