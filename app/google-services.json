@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "497424260598",
+    "project_id": "destiplanner-ch2-ps404",
+    "storage_bucket": "destiplanner-ch2-ps404.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497424260598:android:23153722351ce44dd73bd7",
+        "android_client_info": {
+          "package_name": "com.bangkit.destiplanner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "497424260598-o263j3b4lcse77f4m60h0tp0rpr6untp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCybn1XAI_vBcg4vx6k_IlH8N1niDY34mg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "497424260598-o263j3b4lcse77f4m60h0tp0rpr6untp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497424260598:android:0bc233a3438e2e2cd73bd7",
+        "android_client_info": {
+          "package_name": "com.naufal.capstonech2ps404"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "497424260598-o263j3b4lcse77f4m60h0tp0rpr6untp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCybn1XAI_vBcg4vx6k_IlH8N1niDY34mg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "497424260598-o263j3b4lcse77f4m60h0tp0rpr6untp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

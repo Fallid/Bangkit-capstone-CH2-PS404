@@ -11,5 +11,6 @@ object IconsApp{
     val icBookmarkUnfilled = R.drawable.ic_bookmark_unfilled
     val icDuration = R.drawable.ic_duration
     val icRating = R.drawable.ic_rating
-
+    val icLogin = R.drawable.ic_login
+    val icWave = R.drawable.ic_wave
 }

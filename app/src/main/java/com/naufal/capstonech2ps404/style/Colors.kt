@@ -13,3 +13,5 @@ val secondaryContainer = Color(0xFFF0F0F0)
 
 val whiteSmoke = Color(0xFFebebeb)
 val orange = Color(0xFFf28602)
+val textColor = Color(0xFF352555)
+
