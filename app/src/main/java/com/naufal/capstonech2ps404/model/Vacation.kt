@@ -5,6 +5,10 @@ data class Vacation(
     val name: String,
     val description:String,
     val photoUrl: String,
-    val kota: String
+    val rating: String,
+    val price: String,
+    val duration: String,
+    val kota: String,
+    var isListed: Boolean = false,
 )
 
