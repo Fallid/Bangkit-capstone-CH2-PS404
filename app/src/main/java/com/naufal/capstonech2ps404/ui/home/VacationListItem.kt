@@ -3,9 +3,12 @@ package com.naufal.capstonech2ps404.ui.home
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,9 +35,9 @@ fun VacationListItem(
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .padding(8.dp)
-                .size(60.dp)
-                .clip(CircleShape)
+                .padding(start = 8.dp)
+                .width(81.dp).height(55.dp)
+                .clip(shape = RoundedCornerShape(10.dp))
         )
         Text(
             text = name,

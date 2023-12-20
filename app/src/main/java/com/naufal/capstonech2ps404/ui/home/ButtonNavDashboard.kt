@@ -23,7 +23,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -34,7 +33,6 @@ import com.naufal.capstonech2ps404.style.IconsApp
 import com.naufal.capstonech2ps404.style.backgroundColor
 import com.naufal.capstonech2ps404.style.onSurface
 import com.naufal.capstonech2ps404.style.primaryColor
-import java.util.Collections
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,8 +43,8 @@ fun FabDashboard(navController : NavController) {
     val item = listOf(
         ButtonNavigationItem(
             title = "Home",
-            selectedIcon = painterResource(id = IconsApp.icCompas),
-            unselectedIcon = painterResource(id = IconsApp.icCompas),
+            selectedIcon = painterResource(id = IconsApp.iCompass),
+            unselectedIcon = painterResource(id = IconsApp.iCompass),
             hasNews = false
         ),
         ButtonNavigationItem(
