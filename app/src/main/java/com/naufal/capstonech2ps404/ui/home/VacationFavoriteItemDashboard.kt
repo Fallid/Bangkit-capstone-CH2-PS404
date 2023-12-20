@@ -24,6 +24,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -48,6 +49,7 @@ fun VacationFavoriteItem(
     ) {
         Column(
             verticalArrangement = Arrangement.SpaceEvenly,
+            horizontalAlignment = Alignment.CenterHorizontally,
             modifier = modifier
                 .background(backgroundColor)
                 .padding(end = 11.dp, start = 11.dp, bottom = 11.dp)
@@ -89,4 +91,10 @@ fun VacationFavoriteItem(
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun PreviewVacationFavorite(){
+    VacationFavoriteItem(name = "Pantai 3 Warna", photoUrl = "", kota = "Malang", onClick = { /*TODO*/ })
 }
