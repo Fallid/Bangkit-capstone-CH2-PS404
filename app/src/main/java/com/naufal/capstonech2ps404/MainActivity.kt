@@ -1,6 +1,7 @@
 package com.naufal.capstonech2ps404
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -29,6 +31,7 @@ import com.naufal.capstonech2ps404.ui.home.Dashboard
 import com.naufal.capstonech2ps404.ui.login.Login
 import com.naufal.capstonech2ps404.ui.notification.Notification
 import com.naufal.capstonech2ps404.ui.register.Register
+import com.naufal.capstonech2ps404.viewmodel.ResponseViewModel
 import com.naufal.capstonech2ps404.viewmodel.SignInViewModel
 import kotlinx.coroutines.launch
 
@@ -43,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AppTheme {
+                val responseViewModel: ResponseViewModel = viewModel()
                 val navController = rememberNavController()
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -50,9 +54,10 @@ class MainActivity : AppCompatActivity() {
                 ) {
                     NavHost(
                         navController = navController,
-                        startDestination = "Login",
+                        startDestination = "Testing",
                     ) {
-
+                        composable("Testing"){
+                            HomeScreen(viewModel = responseViewModel)}
                         composable("Home") { Dashboard(navController) }
                         composable("Notification") {
                             Notification(onSignOut = {
@@ -129,3 +134,30 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
+@Composable
+fun HomeScreen(viewModel: ResponseViewModel) {
+
+        viewModel.getItems { response ->
+            val cityResponse = response.city?.jsonMember210
+            cityResponse.let {
+                Log.i("Response API", it.toString())
+            }
+            val descResponse = response.description?.jsonMember210
+            descResponse.let {
+                Log.i("Response API", it.toString())
+            }
+            val nameResponse = response.placeName?.jsonMember210
+
+            nameResponse.let {
+                Log.i("Response API", it.toString())
+            }
+            val imageResponse = response.images?.jsonMember210
+
+            imageResponse.let {
+                Log.i("Response API",it.toString() )
+            }
+        }
+
+}
+
