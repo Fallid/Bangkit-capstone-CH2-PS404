@@ -8,4 +8,8 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="login_details">Login Details</string>
     <string name="icon_login">Icon Login</string>
+    <string name="register">Register</string>
+    <string name="full_name">Full Name</string>
+    <string name="register_details">Register Details</string>
+    <string name="or">or</string>
 </resources>
