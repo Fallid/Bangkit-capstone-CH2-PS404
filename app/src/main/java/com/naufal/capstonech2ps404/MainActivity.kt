@@ -17,8 +17,9 @@ import com.naufal.capstonech2ps404.style.AppTheme
 import com.naufal.capstonech2ps404.ui.detail.Detail
 import com.naufal.capstonech2ps404.ui.favorite.Favorite
 import com.naufal.capstonech2ps404.ui.home.Dashboard
-import com.naufal.capstonech2ps404.ui.home.FabDashboard
+import com.naufal.capstonech2ps404.ui.login.Login
 import com.naufal.capstonech2ps404.ui.notification.Notification
+import com.naufal.capstonech2ps404.ui.register.Register
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,16 +31,16 @@ class MainActivity : AppCompatActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Scaffold(floatingActionButton = { FabDashboard(navController = navController) }) { innerPadding ->
+                    Scaffold() { innerPadding ->
                         NavHost(
                             navController = navController,
-                            startDestination = "Home",
+                            startDestination = "Register",
                             modifier = Modifier.padding(innerPadding)
                         ) {
 
                             composable("Home") { Dashboard(navController) }
-                            composable("Notification") { Notification() }
-                            composable("Favorite") { Favorite() }
+                            composable("Notification") { Notification(navController) }
+                            composable("Favorite") { Favorite(navController) }
                             composable("Detail/{id}") { id ->
                                 val vacationId = id.arguments?.getString("id")
                                 val dataItem = Dummy.vacations.find { it.id == vacationId }
@@ -47,6 +48,8 @@ class MainActivity : AppCompatActivity() {
                                     Detail(vacation = dataItem)
                                 }
                             }
+                            composable("Login"){ Login()}
+                            composable("Register"){ Register(navController = navController)}
                         }
                     }
                 }
