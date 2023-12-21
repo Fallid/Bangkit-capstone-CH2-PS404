@@ -27,8 +27,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.naufal.capstonech2ps404.data.VacationRepository
 import com.naufal.capstonech2ps404.style.backgroundColor
+import com.naufal.capstonech2ps404.ui.components.FabNavigation
 import com.naufal.capstonech2ps404.ui.home.SearchBarLayout
 import com.naufal.capstonech2ps404.ui.home.VacationFavoriteItem
 import com.naufal.capstonech2ps404.viewmodel.VacationsViewModel
@@ -36,7 +39,7 @@ import com.naufal.capstonech2ps404.viewmodel.ViewModelFactory
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun Favorite(viewModel: VacationsViewModel = viewModel(factory = ViewModelFactory(VacationRepository()))) {
+fun Favorite(navController: NavController ,viewModel: VacationsViewModel = viewModel(factory = ViewModelFactory(VacationRepository()))) {
     val groupedVacations by viewModel.groupedVacation.collectAsState()
     val query by viewModel.query
     val listState = rememberLazyGridState()
@@ -49,7 +52,7 @@ fun Favorite(viewModel: VacationsViewModel = viewModel(factory = ViewModelFactor
                 )
             },
         )
-    }) { innerPadding ->
+    }, floatingActionButton = { FabNavigation(navController = navController, 2)}) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
             SearchBarLayout(query = query, onQueryChange = viewModel::search)
             LazyVerticalGrid(
@@ -74,7 +77,8 @@ fun Favorite(viewModel: VacationsViewModel = viewModel(factory = ViewModelFactor
                                 .width(200.dp)
                                 .heightIn(min = 250.dp)
                                 .height(250.dp)
-                                .background(backgroundColor).padding(bottom = 16.dp)
+                                .background(backgroundColor)
+                                .padding(bottom = 16.dp)
                                 .animateItemPlacement(tween(durationMillis = 100))
                         )
                     }
@@ -87,5 +91,6 @@ fun Favorite(viewModel: VacationsViewModel = viewModel(factory = ViewModelFactor
 @Preview
 @Composable
 fun PreviewFavorite() {
-    Favorite()
+    val dummyRoute = rememberNavController()
+    Favorite(dummyRoute)
 }
