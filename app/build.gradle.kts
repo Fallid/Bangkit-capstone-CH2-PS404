@@ -20,7 +20,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         // Set API keys in BuildConfig
         buildConfigField("String", "WEB_CLIENT_ID", "WEB_CLIENT_ID")
-//        buildConfigField "String", "API_KEY_NAME", "\"${properties.getProperty("API_KEY_NAME")}\""
     }
 
     buildTypes {
@@ -59,6 +58,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     // Firebase dependency
     implementation("com.google.firebase:firebase-auth:22.3.0")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
 
     // Testing dependency
     testImplementation("junit:junit:4.13.2")
