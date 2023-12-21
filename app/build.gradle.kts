@@ -1,7 +1,9 @@
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -16,6 +18,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        // Set API keys in BuildConfig
+        buildConfigField("String", "WEB_CLIENT_ID", "WEB_CLIENT_ID")
+//        buildConfigField "String", "API_KEY_NAME", "\"${properties.getProperty("API_KEY_NAME")}\""
     }
 
     buildTypes {
@@ -30,6 +35,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     composeOptions {
@@ -51,7 +57,10 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    // Firebase dependency
     implementation("com.google.firebase:firebase-auth:22.3.0")
+
+    // Testing dependency
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -67,10 +76,12 @@ dependencies {
     implementation ("io.coil-kt:coil-compose:2.2.2")
     implementation("io.coil-kt:coil-svg:2.2.2")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
     androidTestImplementation (platform("androidx.compose:compose-bom:2023.05.01"))
     androidTestImplementation ("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation ("androidx.navigation:navigation-compose:2.7.5")
     implementation("androidx.compose.material:material-icons-extended:1.5.4")
+
 }
