@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.naufal.capstonech2ps404.data.VacationRepository
+import com.naufal.capstonech2ps404.data.repository.VacationRepository
 import com.naufal.capstonech2ps404.style.backgroundColor
 import com.naufal.capstonech2ps404.style.primaryColor
 import com.naufal.capstonech2ps404.ui.components.FabNavigation

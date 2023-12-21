@@ -1,4 +1,4 @@
-package com.naufal.capstonech2ps404.data
+package com.naufal.capstonech2ps404.data.repository
 
 import com.naufal.capstonech2ps404.model.Dummy
 import com.naufal.capstonech2ps404.model.Vacation
