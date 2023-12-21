@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -25,9 +23,9 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.naufal.capstonech2ps404.R
 import com.naufal.capstonech2ps404.style.IconsApp
-import com.naufal.capstonech2ps404.style.backgroundColor
 import com.naufal.capstonech2ps404.style.primaryColor
 import com.naufal.capstonech2ps404.style.textColor
+import com.naufal.capstonech2ps404.ui.components.CustomElevatedButton
 import com.naufal.capstonech2ps404.ui.components.CustomEmailField
 import com.naufal.capstonech2ps404.ui.components.CustomPasswordField
 
@@ -68,22 +66,10 @@ fun Login() {
                         modifier = Modifier.fillMaxWidth()
                     )
                 }
-                ElevatedButton(
-                    onClick = { },
-                    colors = ButtonDefaults.elevatedButtonColors(
-                        containerColor = primaryColor,
-                        contentColor = backgroundColor
-                    ),
-                    modifier = Modifier
-                        .padding(top = 16.dp)
-                        .fillMaxWidth()
-                ) {
-                    Text(
-                        text = stringResource(R.string.login),
-                        style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.SemiBold)
-                    )
-                }
-                Text(text = stringResource(R.string.sign_up_with), style = TextStyle(fontWeight = FontWeight.Medium, fontSize = 12.sp, color = textColor), textAlign = TextAlign.Center,modifier = Modifier.padding(top = 16.dp).fillMaxWidth())
+                CustomElevatedButton(label = stringResource(id = R.string.login))
+                Text(text = stringResource(R.string.sign_up_with), style = TextStyle(fontWeight = FontWeight.Medium, fontSize = 12.sp, color = textColor), textAlign = TextAlign.Center,modifier = Modifier
+                    .padding(top = 16.dp)
+                    .fillMaxWidth())
             }
         }
     }
