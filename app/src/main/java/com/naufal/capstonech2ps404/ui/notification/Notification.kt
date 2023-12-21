@@ -7,10 +7,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.naufal.capstonech2ps404.ui.components.FabNavigation
 
 @Composable
-fun Notification() {
-    Scaffold() { innerPadding ->
+fun Notification(navController: NavController) {
+    Scaffold(floatingActionButton = { FabNavigation(navController = navController, 1)}) { innerPadding ->
         LazyColumn(modifier = Modifier.padding(innerPadding)) {
             item {
                 Text(text = "INI NOTIFICATION PAGE")
@@ -22,5 +25,6 @@ fun Notification() {
 @Preview
 @Composable
 fun PreviewNotification() {
-    Notification()
+    val dummyRoute = rememberNavController()
+    Notification(dummyRoute)
 }
