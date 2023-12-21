@@ -32,7 +32,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.naufal.capstonech2ps404.data.VacationRepository
+import com.naufal.capstonech2ps404.data.repository.VacationRepository
 import com.naufal.capstonech2ps404.model.TabLayoutItem
 import com.naufal.capstonech2ps404.style.IconsApp
 import com.naufal.capstonech2ps404.style.backgroundColor

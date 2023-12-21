@@ -4,7 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.naufal.capstonech2ps404.data.VacationRepository
+import com.naufal.capstonech2ps404.data.repository.VacationRepository
 import com.naufal.capstonech2ps404.model.Vacation
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
