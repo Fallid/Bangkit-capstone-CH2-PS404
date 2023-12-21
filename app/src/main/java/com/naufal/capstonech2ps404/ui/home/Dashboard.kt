@@ -33,6 +33,7 @@ import androidx.navigation.compose.rememberNavController
 import com.naufal.capstonech2ps404.data.VacationRepository
 import com.naufal.capstonech2ps404.style.backgroundColor
 import com.naufal.capstonech2ps404.style.primaryColor
+import com.naufal.capstonech2ps404.ui.components.FabNavigation
 import com.naufal.capstonech2ps404.viewmodel.VacationsViewModel
 import com.naufal.capstonech2ps404.viewmodel.ViewModelFactory
 
@@ -47,14 +48,20 @@ fun Dashboard(
     val query by viewModel.query
     val listState = rememberLazyListState()
     Scaffold(
-        topBar = { SearchBarLayout(query = query, onQueryChange = viewModel::search) },
+        topBar = { SearchBarLayout(query = query, onQueryChange = viewModel::search) }, floatingActionButton = {
+            FabNavigation(
+                navController = navigation, 0
+            )
+        }
     ) { innerPadding ->
         Column(
             modifier = Modifier
                 .padding(innerPadding)
                 .background(backgroundColor)
         ) {
-            Row(verticalAlignment = Alignment.CenterVertically,horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.padding(start = 16.dp, end = 16.dp).fillMaxWidth()) {
+            Row(verticalAlignment = Alignment.CenterVertically,horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier
+                .padding(start = 16.dp, end = 16.dp)
+                .fillMaxWidth()) {
                 Text(text = "Tourism", style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold ))
                 TextButton(onClick = {  }, ) {
                     Text(text = "See All", style = TextStyle(color = primaryColor))
