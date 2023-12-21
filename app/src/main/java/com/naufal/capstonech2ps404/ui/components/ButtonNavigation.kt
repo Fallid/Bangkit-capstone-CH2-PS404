@@ -1,4 +1,4 @@
-package com.naufal.capstonech2ps404.ui.home
+package com.naufal.capstonech2ps404.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -36,9 +36,9 @@ import com.naufal.capstonech2ps404.style.primaryColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FabDashboard(navController : NavController) {
+fun FabNavigation(navController : NavController, index: Int) {
     var selectedItemIndex by rememberSaveable {
-        mutableIntStateOf(0)
+        mutableIntStateOf(index)
     }
     val item = listOf(
         ButtonNavigationItem(
@@ -102,7 +102,7 @@ fun FabDashboard(navController : NavController) {
 @Composable
 fun PreviewButtonNav() {
     val dummyRoute = rememberNavController()
-    Scaffold(floatingActionButton = { FabDashboard(dummyRoute) }) { innerPadding ->
+    Scaffold(floatingActionButton = { FabNavigation(dummyRoute, 1) }) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
 
         }
