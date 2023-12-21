@@ -10,6 +10,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -20,17 +21,22 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberAsyncImagePainter
 import com.naufal.capstonech2ps404.R
+import com.naufal.capstonech2ps404.state.SignInState
 import com.naufal.capstonech2ps404.style.IconsApp
 import com.naufal.capstonech2ps404.style.primaryColor
-import com.naufal.capstonech2ps404.style.textColor
 import com.naufal.capstonech2ps404.ui.components.CustomElevatedButton
 import com.naufal.capstonech2ps404.ui.components.CustomEmailField
 import com.naufal.capstonech2ps404.ui.components.CustomPasswordField
+import com.naufal.capstonech2ps404.ui.components.DividerGap
+import com.naufal.capstonech2ps404.ui.components.GoogleSignIn
+import com.naufal.capstonech2ps404.viewmodel.SignInViewModel
 
 @Composable
-fun Login() {
+fun Login(state: SignInState, onSignInClick: () -> Unit) {
 
     Scaffold { innerPadding ->
         Column(
@@ -66,10 +72,11 @@ fun Login() {
                         modifier = Modifier.fillMaxWidth()
                     )
                 }
-                CustomElevatedButton(label = stringResource(id = R.string.login))
-                Text(text = stringResource(R.string.sign_up_with), style = TextStyle(fontWeight = FontWeight.Medium, fontSize = 12.sp, color = textColor), textAlign = TextAlign.Center,modifier = Modifier
-                    .padding(top = 16.dp)
-                    .fillMaxWidth())
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    CustomElevatedButton(label = stringResource(id = R.string.login))
+                    DividerGap(label = stringResource(id = R.string.sign_up_with))
+                    GoogleSignIn(state = state, onSignInClick = onSignInClick)
+                }
             }
         }
     }
@@ -79,5 +86,7 @@ fun Login() {
 @Preview
 @Composable
 fun PreviewLogin() {
-    Login()
+    val viewModel = viewModel<SignInViewModel>()
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    Login(state = state, onSignInClick = {})
 }
