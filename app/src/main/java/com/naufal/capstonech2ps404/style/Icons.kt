@@ -12,5 +12,4 @@ object IconsApp{
     val icDuration = R.drawable.ic_duration
     val icRating = R.drawable.ic_rating
     val icLogin = R.drawable.ic_login
-    val icWave = R.drawable.ic_wave
 }
