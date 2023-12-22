@@ -20,7 +20,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         // Set API keys in BuildConfig
-        buildConfigField("String", "WEB_CLIENT_ID", "WEB_CLIENT_ID")
+        buildConfigField("String", "WEB_CLIENT_ID", "497424260598-fe33okjklhcfbl44re6ha1hov7o5bff6.apps.googleusercontent.com")
     }
 
     buildTypes {

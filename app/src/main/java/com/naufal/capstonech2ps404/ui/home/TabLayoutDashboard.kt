@@ -1,5 +1,7 @@
 package com.naufal.capstonech2ps404.ui.home
 
+import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -15,7 +17,6 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
@@ -28,19 +29,23 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.naufal.capstonech2ps404.ExampleClass
 import com.naufal.capstonech2ps404.data.repository.VacationRepository
+import com.naufal.capstonech2ps404.data.retrofit.ApiConfig
 import com.naufal.capstonech2ps404.model.TabLayoutItem
-import com.naufal.capstonech2ps404.style.IconsApp
 import com.naufal.capstonech2ps404.style.backgroundColor
 import com.naufal.capstonech2ps404.style.secondaryContainer
 import com.naufal.capstonech2ps404.viewmodel.VacationsViewModel
 import com.naufal.capstonech2ps404.viewmodel.ViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
+@SuppressLint("CoroutineCreationDuringComposition")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TabLayoutDashboard(
@@ -50,6 +55,17 @@ fun TabLayoutDashboard(
         )
     )
 ) {
+    val exampleObject = ExampleClass()
+    GlobalScope.launch(Dispatchers.IO) {
+        val response = ApiConfig.getVacations().getPlaces("Jakarta")
+
+        if (response.isSuccessful) {
+            for (data in response.body()!!) {
+                exampleObject.setItems(data)
+                Log.i("Result Response", data.description.toString())
+            }
+        }
+    }
     val groupedVacations by viewModel.groupedVacation.collectAsState()
     val query by viewModel.query
     val listState = rememberLazyListState()
@@ -58,19 +74,13 @@ fun TabLayoutDashboard(
     }
     val tabItem = listOf<TabLayoutItem>(
         TabLayoutItem(
-            city = "Malang",
-            unselectedIcon = painterResource(id = IconsApp.iCompass),
-            selectedIcon = painterResource(id = IconsApp.iCompass)
+            city = "Jakarta",
         ),
         TabLayoutItem(
             city = "Surabaya",
-            unselectedIcon = painterResource(id = IconsApp.iCompass),
-            selectedIcon = painterResource(id = IconsApp.iCompass)
         ),
         TabLayoutItem(
             city = "Bandung",
-            unselectedIcon = painterResource(id = IconsApp.iCompass),
-            selectedIcon = painterResource(id = IconsApp.iCompass)
         ),
     )
     val pagerState = rememberPagerState {
@@ -92,13 +102,7 @@ fun TabLayoutDashboard(
                         Text(
                             text = tabLayoutItem.city
                         )
-                    },
-                    icon = {
-                        Icon(
-                            painter = tabLayoutItem.selectedIcon,
-                            contentDescription = "City"
-                        )
-                    })
+                    },)
             }
         }
         HorizontalPager(
@@ -113,11 +117,11 @@ fun TabLayoutDashboard(
                     .fillMaxWidth()
                     .background(backgroundColor)
             ) {
-                groupedVacations.forEach { (_, vacations) ->
-                    items(vacations, key = { it.id }) { vacation ->
+//                groupedVacations.forEach { (_, vacations) ->
+                    items(exampleObject.getItems()) { vacation ->
                         VacationListItem(
-                            name = vacation.name,
-                            photoUrl = vacation.photoUrl,
+                            name = vacation.placeName.toString(),
+                            photoUrl = vacation.images.toString(),
                             onClick = {
 //                                navigation.navigate("detail_page/${vacation.id}")
                             },
@@ -136,7 +140,7 @@ fun TabLayoutDashboard(
 
         }
     }
-}
+
 
 
 @Preview

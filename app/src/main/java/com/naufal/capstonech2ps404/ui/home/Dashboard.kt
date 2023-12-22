@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -31,6 +30,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.naufal.capstonech2ps404.data.repository.VacationRepository
+import com.naufal.capstonech2ps404.model.ResponseItem
 import com.naufal.capstonech2ps404.style.backgroundColor
 import com.naufal.capstonech2ps404.style.primaryColor
 import com.naufal.capstonech2ps404.ui.components.FabNavigation
@@ -41,12 +41,13 @@ import com.naufal.capstonech2ps404.viewmodel.ViewModelFactory
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Dashboard(
+    data: List<ResponseItem>,
     navigation: NavController,
     viewModel: VacationsViewModel = viewModel(factory = ViewModelFactory(VacationRepository()))
 ) {
-    val groupedVacations by viewModel.groupedVacation.collectAsState()
+//    val groupedVacations by viewModel.groupedVacation.collectAsState()
     val query by viewModel.query
-    val listState = rememberLazyListState()
+//    val listState = rememberLazyListState()
     Scaffold(
         topBar = { SearchBarLayout(query = query, onQueryChange = viewModel::search) }, floatingActionButton = {
             FabNavigation(
@@ -68,20 +69,20 @@ fun Dashboard(
                 }
             }
             LazyRow(
-                state = listState,
+
                 modifier = Modifier
                     .height(270.dp)
                     .background(backgroundColor)
             ) {
 
-                groupedVacations.forEach { (_, vacations) ->
-                    items(vacations, key = { it.id }) { vacation ->
+//                data.forEach { (_, vacations) ->
+                    items(data) { vacation ->
                         VacationFavoriteItem(
-                            name = vacation.name,
-                            photoUrl = vacation.photoUrl,
-                            kota = vacation.kota,
+                            name = vacation.placeName.toString(),
+                            photoUrl = vacation.images.toString(),
+                            kota = vacation.city.toString(),
                             onClick = {
-                                navigation.navigate("Detail/${vacation.id}")
+                                navigation.navigate("Detail/${vacation.placeName}")
                             },
                             modifier = Modifier
                                 .width(200.dp)
@@ -91,7 +92,7 @@ fun Dashboard(
                                 .animateItemPlacement(tween(durationMillis = 100))
                         )
                     }
-                }
+//                }
             }
             TabLayoutDashboard()
         }
@@ -102,6 +103,7 @@ fun Dashboard(
 @Preview
 @Composable
 fun DashboardPreview() {
+    val placeName: MutableList<ResponseItem> = mutableListOf()
     val dummyNavigation = rememberNavController()
-    Dashboard(dummyNavigation)
+    Dashboard(placeName,dummyNavigation)
 }
