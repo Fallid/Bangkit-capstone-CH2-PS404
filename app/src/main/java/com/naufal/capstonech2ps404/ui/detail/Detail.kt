@@ -42,18 +42,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import coil.compose.rememberAsyncImagePainter
-import com.naufal.capstonech2ps404.model.Dummy
-import com.naufal.capstonech2ps404.model.Vacation
+import com.naufal.capstonech2ps404.ExampleClass
+import com.naufal.capstonech2ps404.model.ResponseItem
 import com.naufal.capstonech2ps404.style.IconsApp
 import com.naufal.capstonech2ps404.style.orange
 import com.naufal.capstonech2ps404.style.primaryColor
 import com.naufal.capstonech2ps404.style.whiteSmoke
 
 @Composable
-fun Detail(vacation: Vacation?) {
+fun Detail(vacation: ResponseItem?) {
     val onNavigateBack = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
-    val isBookmarked = vacation?.isListed
+    val isBookmarked = false
     Scaffold { innerPadding ->
         Column(
             modifier = Modifier
@@ -63,7 +62,7 @@ fun Detail(vacation: Vacation?) {
         ) {
             Box {
                 AsyncImage(
-                    model = vacation?.photoUrl,
+                    model = vacation?.images,
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
@@ -99,8 +98,8 @@ fun Detail(vacation: Vacation?) {
 
                     if (isBookmarked == true) {
                         TravelStatusBar(
-                            thumbnail = vacation.photoUrl,
-                            name = vacation.name,
+                            thumbnail = vacation?.images.toString(),
+                            name = vacation?.placeName.toString(),
                             modifier = Modifier
                                 .weight(1f)
                                 .padding(horizontal = 4.dp)
@@ -140,7 +139,7 @@ fun Detail(vacation: Vacation?) {
                 modifier = Modifier
                     .padding(16.dp)
             ) {
-                vacation?.name?.let {
+                vacation?.placeName?.let {
                     Text(
                         text = it,
                         fontSize = 32.sp,
@@ -164,7 +163,7 @@ fun Detail(vacation: Vacation?) {
                 ) {
                     vacation?.price?.let {
                         Text(
-                            text = it,
+                            text = it.toString(),
                             fontSize = 28.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
@@ -192,9 +191,9 @@ fun Detail(vacation: Vacation?) {
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
             ) {
-                vacation?.duration?.let { VacationCharacter(iconId = IconsApp.icDuration, title = "Duration", color = primaryColor,  value = it) }
+                vacation?.rating?.let { VacationCharacter(iconId = IconsApp.icDuration, title = "Duration", color = primaryColor,  value = it.toString()) }
                 Spacer(modifier = Modifier.weight(1.0f))
-                vacation?.rating?.let { VacationCharacter(iconId = IconsApp.icRating, title = "Rating", color = orange, value = it) }
+                vacation?.rating?.let { VacationCharacter(iconId = IconsApp.icRating, title = "Rating", color = orange, value = it.toString()) }
             }
 
             vacation?.description?.let {
@@ -295,8 +294,8 @@ fun TravelStatusBar(
         verticalAlignment = Alignment.CenterVertically,
     ) {
 
-        Image(
-            rememberAsyncImagePainter(model = thumbnail),
+        AsyncImage(
+            model = thumbnail,
             contentDescription = null,
             modifier = Modifier
                 .height(40.dp)
@@ -333,7 +332,8 @@ fun TravelStatusBar(
 @Preview
 @Composable
 fun PreviewDetail() {
-    val dataItem = Dummy.vacations.find { it.id == "1" }
+    val exampleObject = ExampleClass()
+    val dataItem = exampleObject.getItems().find { it.placeName == "Jakarta" }
     if (dataItem != null) {
         Detail(vacation = dataItem)
     }
